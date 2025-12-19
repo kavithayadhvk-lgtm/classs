@@ -1,0 +1,88 @@
+class Order {
+
+    boolean ready = false;
+
+    // Customer places order
+    synchronized void foodOrder() {
+        System.out.println("Customer placed the order");
+        ready = true;
+        notify();
+    }
+
+    // Cook prepares food
+    synchronized void cookFood() {
+        try {
+            while (!ready) {
+                wait();
+            }
+        } catch (Exception e) {
+        }
+
+        System.out.println("Chef is cooking the food");
+        notify();
+    }
+
+    // Customer receives food
+    synchronized void receiveFood() {
+        try {
+            wait();
+        } catch (Exception e) {
+        }
+
+        System.out.println("Customer received the food");
+    }
+}
+
+// Thread 1
+class Customer extends Thread {
+    Order o;
+
+    Customer(Order o) {
+        this.o = o;
+    }
+
+    public void run() {
+        o.foodOrder();
+    }
+}
+
+// Thread 2
+class Cook extends Thread {
+    Order o;
+
+    Cook(Order o) {
+        this.o = o;
+    }
+
+    public void run() {
+        o.cookFood();
+    }
+}
+
+// Thread 3
+class Waiter extends Thread {
+    Order o;
+
+    Waiter(Order o) {
+        this.o = o;
+    }
+
+    public void run() {
+        o.receiveFood();
+    }
+}
+
+public class EasyThread {
+    public static void main(String[] args) {
+
+        Order o = new Order();
+
+        Customer c = new Customer(o);
+        Cook ck = new Cook(o);
+        Waiter w = new Waiter(o);
+
+        c.start();
+        ck.start();
+        w.start();
+    }
+}
