@@ -1,0 +1,41 @@
+import java.util.*;
+class Employee {
+	private String empname;
+	private String empdesgination;
+	private String empemail;
+	Employee (String empname,String empdesgination,String empemail){
+		super();
+		this.empname=empname;
+		this.empdesgination=empdesgination;
+		this.empemail=empemail;
+	}
+	public String getempname() {
+		return empname;
+	}
+	public String getempdesgination() {
+		return empdesgination;
+	}
+	public String getemail() {
+		return empemail;
+	}
+	public String toString() {
+		return "Employee empname= "+ empname +"empdesgination= "+ empdesgination +"empemail= "+ empemail;
+	}
+}
+
+public class Example2ForLinkedList {
+	public static void main(String[] args) {
+	Employee e1=new Employee("minnu","student","minnu@25");
+	Employee e2=new Employee("manasa","goodgirl","manasa@27");
+	Employee e3=new Employee("guna","friend","guna@");
+	
+	LinkedList<Employee> ll=new LinkedList<>();
+	ll.add(e1);
+	ll.add(e2);
+	ll.add(e3);
+	for(Object i:ll) {
+		System.out.println(i);
+	     }
+    }
+
+}
