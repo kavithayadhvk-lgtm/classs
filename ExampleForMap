@@ -1,0 +1,26 @@
+import java.util.HashMap;
+
+public class ExampleForMap {
+	public static void main(String[] args) {
+		
+		HashMap<String,String> hm = new HashMap<String,String>();
+		hm.put("Name","likitha");
+		hm.put("Place","Banglore");
+		
+		System.out.println(hm);
+		
+		System.out.println("_______________________________________");
+		
+		System.out.println(hm.get("Name"));
+		
+		System.out.println(hm.get("Place"));
+		
+		System.out.println("_____________________________________");
+		
+		for(Object i:hm.keySet()) {
+			
+			System.out.println(i);
+		}
+	}
+
+}
